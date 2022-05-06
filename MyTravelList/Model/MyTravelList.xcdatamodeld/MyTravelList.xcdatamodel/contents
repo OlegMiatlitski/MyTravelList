@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="PlaceEntity" representedClassName="PlaceEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="arrivalDay" optional="YES" attributeType="String"/>
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="collectionOfPhoto" optional="YES" attributeType="Binary"/>
+        <attribute name="countOfDaysStaying" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="departureDay" optional="YES" attributeType="String"/>
+        <attribute name="flagUnicode" optional="YES" attributeType="String"/>
+        <attribute name="placeAvatar" optional="YES" attributeType="Binary"/>
+        <attribute name="placeLatitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="placeLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="placeRating" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="PlaceEntity" positionX="-63" positionY="-18" width="128" height="194"/>
+    </elements>
+</model>
