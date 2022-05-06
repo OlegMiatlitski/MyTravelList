@@ -50,16 +50,10 @@ final class DetailedViewController: UIViewController {
         return arrayOfImages
     }
     
-    func set(place: Place) {
-        avatarImage.image = UIImage(data: place.placeAvatar)
-        countryLabel.text = "\(place.country)  \(place.flagUnicode)"
-        cityLabel.text = place.city
-        ratingLabel.text = "\u{2B50} \(place.placeRating)"
-        countOfDaysLabel.text = "\(place.countOfDaysStaying) d"
-        arrayOfPhotos = imagesFromCoreData(object: place.collectionOfPhoto)!
+    func yearLabel(date: String) -> String? {
         var year: [Character] = []
         var index = 0
-        for char in place.arrivalDay {
+        for char in date {
             index += 1
             if index >= 7 {
                 year.append(char)
@@ -69,7 +63,17 @@ final class DetailedViewController: UIViewController {
         for character in year {
             optionalYear?.append(character)
         }
-        yearLabel.text = optionalYear ?? "2022"
+        return optionalYear
+    }
+    
+    func set(place: Place) {
+        avatarImage.image = UIImage(data: place.placeAvatar)
+        countryLabel.text = "\(place.country)  \(place.flagUnicode)"
+        cityLabel.text = place.city
+        ratingLabel.text = "\u{2B50} \(place.placeRating)"
+        countOfDaysLabel.text = "\(place.countOfDaysStaying) d"
+        arrayOfPhotos = imagesFromCoreData(object: place.collectionOfPhoto)!
+        yearLabel.text = yearLabel(date: place.arrivalDay) ?? "2022"
     }
     
     // MARK: - Setups
@@ -222,7 +226,7 @@ final class DetailedViewController: UIViewController {
         ratingLabel.textAlignment = .center
         ratingLabel.font = UIFont(name: "Leto Text Sans Defect", size: 17)
         ratingLabel.adjustsFontSizeToFitWidth = true
-//        
+       
         distanceLabel.backgroundColor = .clear
         distanceLabel.textColor = .white
         distanceLabel.textAlignment = .right
