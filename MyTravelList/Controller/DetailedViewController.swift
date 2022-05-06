@@ -49,7 +49,7 @@ final class DetailedViewController: UIViewController {
         }
         return arrayOfImages
     }
-    
+//   change date to year
     func yearLabel(date: String) -> String? {
         var year: [Character] = []
         var index = 0
