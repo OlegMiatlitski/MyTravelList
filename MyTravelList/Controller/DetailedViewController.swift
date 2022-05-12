@@ -37,7 +37,7 @@ final class DetailedViewController: UIViewController {
     
     // MARK: - API
     
-    func imagesFromCoreData(object: Data?) -> [UIImage]? {
+    private func imagesFromCoreData(object: Data?) -> [UIImage]? {
         var arrayOfImages = [UIImage]()
         guard let object = object else { return nil }
         if let dataArray = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: object) {
@@ -49,17 +49,11 @@ final class DetailedViewController: UIViewController {
         }
         return arrayOfImages
     }
-    
-    func set(place: Place) {
-        avatarImage.image = UIImage(data: place.placeAvatar)
-        countryLabel.text = "\(place.country)  \(place.flagUnicode)"
-        cityLabel.text = place.city
-        ratingLabel.text = "\u{2B50} \(place.placeRating)"
-        countOfDaysLabel.text = "\(place.countOfDaysStaying) d"
-        arrayOfPhotos = imagesFromCoreData(object: place.collectionOfPhoto)!
+
+    private func yearLabel(date: String) -> String? {
         var year: [Character] = []
         var index = 0
-        for char in place.arrivalDay {
+        for char in date {
             index += 1
             if index >= 7 {
                 year.append(char)
@@ -69,7 +63,17 @@ final class DetailedViewController: UIViewController {
         for character in year {
             optionalYear?.append(character)
         }
-        yearLabel.text = optionalYear ?? "2022"
+        return optionalYear
+    }
+    
+    func set(place: Place) {
+        avatarImage.image = UIImage(data: place.placeAvatar)
+        countryLabel.text = "\(place.country)  \(place.flagUnicode)"
+        cityLabel.text = place.city
+        ratingLabel.text = "\u{2B50} \(place.placeRating)"
+        countOfDaysLabel.text = "\(place.countOfDaysStaying) d"
+        arrayOfPhotos = imagesFromCoreData(object: place.collectionOfPhoto)!
+        yearLabel.text = yearLabel(date: place.arrivalDay) ?? "2022"
     }
     
     // MARK: - Setups
@@ -165,7 +169,7 @@ final class DetailedViewController: UIViewController {
         image.contentMode = .scaleAspectFill
         view.backgroundColor = UIColor(patternImage: image.image!)
         
-        collectionView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        collectionView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
 
         backgroundToAvatarView.backgroundColor = UIColor(red: 214/255, green: 214/255, blue: 214/255, alpha: 1)
         backgroundToAvatarView.layer.cornerRadius = 10
@@ -222,7 +226,7 @@ final class DetailedViewController: UIViewController {
         ratingLabel.textAlignment = .center
         ratingLabel.font = UIFont(name: "Leto Text Sans Defect", size: 17)
         ratingLabel.adjustsFontSizeToFitWidth = true
-//        
+       
         distanceLabel.backgroundColor = .clear
         distanceLabel.textColor = .white
         distanceLabel.textAlignment = .right
@@ -230,7 +234,7 @@ final class DetailedViewController: UIViewController {
         distanceLabel.adjustsFontSizeToFitWidth = true
     }
     
-    func distanceFromThePlace() {
+    private func distanceFromThePlace() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         let myLatitude = locationManager.location?.coordinate.latitude
