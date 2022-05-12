@@ -15,6 +15,9 @@ final class CollectionOfPhotosViewController: UIViewController,  UIImagePickerCo
             collectionView.reloadData()
         }
     }
+    
+    // MARK: Properties
+
     weak var delegate: TransferDataBetweenVCDelegats?
 
     // MARK: - Lifecycle
@@ -48,7 +51,6 @@ final class CollectionOfPhotosViewController: UIViewController,  UIImagePickerCo
     }
     
     private func addConstraints() {
-        
         backgroundRectangle.translatesAutoresizingMaskIntoConstraints = false
         backgroundRectangle.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         backgroundRectangle.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
@@ -81,7 +83,6 @@ final class CollectionOfPhotosViewController: UIViewController,  UIImagePickerCo
     }
     
     private func setupUI(){
-                        
         let image = UIImageView()
         image.image = UIImage(named: "background")!
         image.contentMode = .scaleAspectFill

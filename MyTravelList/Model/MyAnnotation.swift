@@ -1,6 +1,6 @@
 import MapKit
 
-class MyAnnotation: NSObject, MKAnnotation {
+final class MyAnnotation: NSObject, MKAnnotation {
     let title: String?
     let subtitle: String?
     let flag: String?
@@ -15,7 +15,7 @@ class MyAnnotation: NSObject, MKAnnotation {
     }
 }
 
-class MyAnnotationView: MKMarkerAnnotationView {
+final class MyAnnotationView: MKMarkerAnnotationView {
     override var annotation: MKAnnotation? {
         willSet {
             guard let _myAnnotation = newValue as? MyAnnotation else { return }

@@ -66,7 +66,6 @@ final class AddNewPlaceViewController: UIViewController {
     }
     
     private func addConstraints() {
-        
         backgroundRectangle.translatesAutoresizingMaskIntoConstraints = false
         backgroundRectangle.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         backgroundRectangle.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
@@ -160,7 +159,6 @@ final class AddNewPlaceViewController: UIViewController {
     }
     
     private func setupUI() {
-        
         title = "Add a new place"
         
         backgroundRectangle.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.7)
@@ -186,7 +184,7 @@ final class AddNewPlaceViewController: UIViewController {
         countryTextField.layer.cornerRadius = 10
         countryTextField.textAlignment = .left
         countryTextField.attributedPlaceholder = NSAttributedString(
-            string: "Enter a country name",
+            string: "Enter country name",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
         )
         countryTextField.font = UIFont(name: "Leto Text Sans Defect", size: 20)
@@ -209,7 +207,7 @@ final class AddNewPlaceViewController: UIViewController {
         cityTextField.layer.masksToBounds = true
         cityTextField.textAlignment = .left
         cityTextField.attributedPlaceholder = NSAttributedString(
-            string: "Enter a city name",
+            string: "Enter city name",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
         )
         cityTextField.font = UIFont(name: "Leto Text Sans Defect", size: 20)
@@ -374,6 +372,7 @@ final class AddNewPlaceViewController: UIViewController {
         }
         ratingLabel.text = "\(selectedRating)"
     }
+    
     @objc func ratingDown() {
         if selectedRating > 1 {
             selectedRating -= 1

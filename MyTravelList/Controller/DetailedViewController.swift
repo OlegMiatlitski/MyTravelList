@@ -37,7 +37,7 @@ final class DetailedViewController: UIViewController {
     
     // MARK: - API
     
-    func imagesFromCoreData(object: Data?) -> [UIImage]? {
+    private func imagesFromCoreData(object: Data?) -> [UIImage]? {
         var arrayOfImages = [UIImage]()
         guard let object = object else { return nil }
         if let dataArray = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: object) {
@@ -50,7 +50,7 @@ final class DetailedViewController: UIViewController {
         return arrayOfImages
     }
 
-    func yearLabel(date: String) -> String? {
+    private func yearLabel(date: String) -> String? {
         var year: [Character] = []
         var index = 0
         for char in date {
@@ -169,7 +169,7 @@ final class DetailedViewController: UIViewController {
         image.contentMode = .scaleAspectFill
         view.backgroundColor = UIColor(patternImage: image.image!)
         
-        collectionView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        collectionView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
 
         backgroundToAvatarView.backgroundColor = UIColor(red: 214/255, green: 214/255, blue: 214/255, alpha: 1)
         backgroundToAvatarView.layer.cornerRadius = 10
@@ -234,7 +234,7 @@ final class DetailedViewController: UIViewController {
         distanceLabel.adjustsFontSizeToFitWidth = true
     }
     
-    func distanceFromThePlace() {
+    private func distanceFromThePlace() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         let myLatitude = locationManager.location?.coordinate.latitude
